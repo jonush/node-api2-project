@@ -10,9 +10,12 @@ server.use(cors());
 server.use('/api/posts', postsRouter);
 
 server.get('/', (req,res) => {
-  res.send(`<h1>api2-project</h1>`)
+  res.status(200).json({
+    environment: process.env.NODE_ENV,
+    port: process.env.PORT,
+    greeting: process.env.GREETING
+  });
 });
 
-server.listen(3000, () => {
-  console.log('\n == Server running on port 3000 == \n');
-});
+module.exports = server;
+
